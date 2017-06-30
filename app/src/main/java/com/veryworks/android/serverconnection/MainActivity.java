@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 리모트 관련 설정
     final String DOMAIN = "http://192.168.10.240:8080";
-    final String SERVER_PATH = "/bbs/json/list";
+    final String SERVER_PATH = "/bbs";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
         adapter = new CustomAdapter();
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         load();
     }
 
