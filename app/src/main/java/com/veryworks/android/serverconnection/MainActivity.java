@@ -10,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.google.gson.Gson;
+import com.veryworks.android.serverconnection.domain.Data;
+
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
@@ -55,16 +58,16 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return result;
             }
-
             @Override
             protected void onPostExecute(String result) {
                 // 결과값인 json 스트링을 객체로 변환
-                Log.e("Result",result);
+                Gson gson = new Gson();
+                Data data = gson.fromJson(result, Data.class);
                 // listView 의 Adapter 에 세팅
-
+                adapter.setData(data.bbsList);
                 // listView notify
+                adapter.notifyDataSetChanged();
             }
-
         }.execute(url);
     }
 
@@ -82,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         // 데이터를 스트링으로 변환해서 리턴
         return resBody.string();
     }
-
 
     // 화면 xml 위젯에 속성추가 -> android:onClick="btnPost"
     public void btnPost(View view){
