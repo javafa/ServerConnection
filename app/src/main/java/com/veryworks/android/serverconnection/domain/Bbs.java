@@ -5,9 +5,9 @@ package com.veryworks.android.serverconnection.domain;
  */
 
 public class Bbs {
-    int no;
-    String title;
-    String author;
-    String content;
-    String date;
+    public int no;
+    public String title;
+    public String author;
+    public String content;
+    public String date;
 }
